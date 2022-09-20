@@ -27,7 +27,8 @@
     "ws": "^8.8.1"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "deploy": "gcloud app deploy"
   },
   "repository": {
     "type": "git",
