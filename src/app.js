@@ -1,6 +1,9 @@
-const { Client, GatewayIntentBits } = require("discord.js");
+import { Client, GatewayIntentBits } from "discord.js";
+import { config } from "dotenv";
+
+config();
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds]});
-require("dotenv").config();
 
 client.on("ready", () => {
     console.log(`${client.user.tag} is online!`);
