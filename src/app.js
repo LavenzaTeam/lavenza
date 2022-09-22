@@ -1,12 +1,19 @@
-import { Client, GatewayIntentBits } from "discord.js";
-import { config } from "dotenv";
+require("dotenv").config();
+const { token } = process.env;
+const { Client, Collection, GatewayIntentBits } = require("discord.js");
+const fs = require("fs");
 
-config();
+const client = new Client({ intents: GatewayIntentBits.Guilds });
+client.commands = new Collection();
+client.commandArray = [];
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds]});
+const functionFolders = fs.readdirSync(`./src/functions`);
+for (const folder of functionFolders) {
+    const functionFiles = fs.readdirSync(`./src/functions/${folder}`).filter(file => file.endsWith(".js"));
 
-client.on("ready", () => {
-    console.log(`${client.user.tag} is online!`);
-});
+    for (const file of functionFiles) require(`./functions/${folder}/${file}`)(client);
+}
 
-client.login(process.env.token)
+client.handleEvents();
+client.handleCommands();
+client.login(token);
