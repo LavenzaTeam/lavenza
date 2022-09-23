@@ -17,3 +17,5 @@ rest.get(Routes.applicationCommands(clientId))
         }
         return Promise.all(promises);
     });
+
+console.log(`Global Slash Commands removed for '${clientId}'`);

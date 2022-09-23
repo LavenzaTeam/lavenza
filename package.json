@@ -1,10 +1,11 @@
 {
   "name": "lavenza",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A Persona Discord Bot!",
   "main": "src/app.js",
   "scripts": {
     "start": "node .",
+    "dev": "nodemon src/app.js",
     "removeGuild": "node src/removeGuildSlashCommands.js",
     "removeGlobal": "node src/removeGlobalSlashCommands.js"
   },
@@ -23,5 +24,8 @@
     "discord-api-types": "^0.37.10",
     "discord.js": "^14.4.0",
     "dotenv": "^16.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
