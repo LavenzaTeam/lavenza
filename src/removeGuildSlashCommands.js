@@ -18,3 +18,5 @@ rest.get(Routes.applicationGuildCommands(clientId, guildId))
         }
         return Promise.all(promises);
     });
+
+console.log(`Guild Slash Commands for guildId: '${guildId}' have been removed for client: '${clientId}'`);
