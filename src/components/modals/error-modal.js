@@ -1,15 +1,21 @@
 const { WebhookClient, EmbedBuilder } = require("discord.js")
+const banlist = require("../../configuration/error-banlist.json");
 
 module.exports = {
     data: {
         name: "error-modal"
     },
     async execute(interaction, client) {
+        let reportingUser = interaction.user.id;
+        if (banlist[reportingUser] === true) return interaction.reply({
+            content: "Apologies, but you have been banned from using the report feature. \nPlease contact the developer if you would like to know why.",
+            ephemeral: true
+        });
+
         const commandInput = interaction.fields.getTextInputValue("commandInput");
         const dataInput = interaction.fields.getTextInputValue("dataInput");
         const bugInput = interaction.fields.getTextInputValue("bugInput");
 
-        const reportingUser = interaction.user.id
         const webhook = new WebhookClient({ id: process.env.error_webhook_id, token: process.env.error_webhook_token})
 
         const errorEmbed = new EmbedBuilder()
