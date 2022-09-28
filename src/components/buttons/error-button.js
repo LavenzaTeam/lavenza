@@ -1,10 +1,17 @@
-const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require("discord.js")
+const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require("discord.js");
+const banlist = require("../../configuration/error-banlist.json");
 
 module.exports = {
     data: {
         name: "error-button"
     },
     async execute(interaction, client) {
+        let reportingUser = interaction.user.id;
+        if (banlist[reportingUser] === true) return interaction.reply({
+            content: "Apologies, but you have been banned from using the report feature. \nPlease contact the developer if you would like to know why.",
+            ephemeral: true
+        });
+
         const errorModal = new ModalBuilder()
             .setCustomId("error-modal")
             .setTitle("Report an Error");

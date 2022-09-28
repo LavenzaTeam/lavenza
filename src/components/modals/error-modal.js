@@ -14,11 +14,18 @@ module.exports = {
 
         const errorEmbed = new EmbedBuilder()
             .setTitle("Error Report")
-            .setColor("DarkBlue")
+            .setColor(client.color)
+            .setTimestamp()
+            .setFooter({ text: "Lavenza Error Report", iconURL: "https://lavenza.tk/assets/logo.png" })
+            .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL() })
+            .setURL("https://lavenza.tk/")
+            .setThumbnail("https://lavenza.tk/assets/logo.png")
             .addFields(
                 { name: "Reporting User", value: reportingUser },
-                { name: "Command Used", value: commandInput },
-                { name: "Data Searched", value: dataInput },
+                { name: "\u200B", value: "\u200B" },
+                { name: "Command Used", value: commandInput, inline: true },
+                { name: "Data Searched", value: dataInput, inline: true },
+                { name: "\u200B", value: "\u200B" },
                 { name: "Detailed Description", value: bugInput }
             );
 

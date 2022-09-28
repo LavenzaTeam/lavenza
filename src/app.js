@@ -9,6 +9,7 @@ client.buttons = new Collection();
 client.selectMenus = new Collection();
 client.modals = new Collection();
 client.commandArray = [];
+client.color = 0x0800ff;
 
 const functionFolders = fs.readdirSync(`./src/functions`);
 for (const folder of functionFolders) {
