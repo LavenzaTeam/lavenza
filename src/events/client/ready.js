@@ -7,7 +7,7 @@ module.exports = {
         console.log(`${client.user.tag} is online!`);
         console.log(`${client.user.username} is currently serving ${client.guilds.cache.size} servers!`);
 
-        client.user.setPresence({ activities: [{ name: 'Early Dev Build! | https://lavenza.tk/' }], status: 'dnd' });
+        client.user.setPresence({ activities: [{ name: 'Early Dev Build | https://lavenza.tk/' }], status: 'dnd' });
 
         var timer = 3, interval = timer * 60 * 1000;
         setInterval(function() {
