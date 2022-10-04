@@ -5,7 +5,9 @@ module.exports = {
     once: true,
     async execute(client) {
         console.log(`${client.user.tag} is online!`);
-        client.user.setPresence({ activities: [{ name: 'Early Dev Build! | https://lavenza.tk/' }], status: 'dnd' });
+        console.log(`${client.user.username} is currently serving ${client.guilds.cache.size} servers!`);
+
+        client.user.setPresence({ activities: [{ name: 'Early Dev Build | https://lavenza.tk/' }], status: 'dnd' });
 
         var timer = 3, interval = timer * 60 * 1000;
         setInterval(function() {
