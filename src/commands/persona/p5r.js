@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require("discord.js");
 const fetch = require("node-fetch");
 const api = require("../../configuration/api-endpoints.json");
 
@@ -27,20 +27,24 @@ module.exports = {
             .setStyle(ButtonStyle.Danger);
 
         const type = interaction.options.getString("type");
-        const data = interaction.options.getString("data");
-        const fetchedData = await fetch(api.p5r.persona);
-        const res = await fetchedData.json();
+        var search = interaction.options.getString("data").toLowerCase().replace(/ /g, "_");
 
         switch (type) {
             case "persona":
+                const fetchedData = await fetch(api.p5r.persona);
+                const res = await fetchedData.json();
 
-                if (!res[data]) return interaction.reply({
+                if (!res[search]) return interaction.reply({
                     content: "There was an error searching for the specified data, please try again.",
                     ephemeral: true,
                     components: [new ActionRowBuilder().addComponents(errorButton)]
                 });
 
-                var messageToSend = res[data].name;
+                var embed = new EmbedBuilder()
+                    .setColor("Red")
+                    .setTitle(res[search].name)
+                    .setTimestamp()
+                    .setFooter({ text: "Data from the Lavenza API was provided by the SMT Fandom Wiki", iconURL: client.user.displayAvatarURL() });
 
                 break;
         
@@ -50,8 +54,8 @@ module.exports = {
 
 
         interaction.reply({
-            content: messageToSend,
-            components: [new ActionRowBuilder().addComponents(errorButton)]
+            components: [new ActionRowBuilder().addComponents(errorButton)],
+            embeds: [embed]
         });
     }
 }
