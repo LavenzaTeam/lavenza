@@ -81,7 +81,7 @@ module.exports = {
                 }
 
                 //affinities
-                let affinitiesMessage = `Physical: ${res[search].affinities.phys} | Gun: ${res[search].affinities.gun} | Fire: ${res[search].affinities.fire} | Ice: ${res[search].affinities.ice} | Elec: ${res[search].affinities.elec} | Wind: ${res[search].affinities.wind} | Psy: ${res[search].affinities.psy} | Nuke: ${res[search].affinities.nuke} | Bless: ${res[search].affinities.bless} | Curse: ${res[search].affinities.curse}`
+                let affinitiesMessage = `<:p5_physical:1029974208962371654>: ${res[search].affinities.phys} | <:p5_gun:1029974261995163658>: ${res[search].affinities.gun} | <:p5_fire:1029974318072991784>: ${res[search].affinities.fire} | <:p5_ice:1029974354802511922>: ${res[search].affinities.ice} | <:p5_elec:1029974416047747082>: ${res[search].affinities.elec} | <:p5_wind:1029974468002598952>: ${res[search].affinities.wind} | <:p5_psy:1029974500441325568>: ${res[search].affinities.psy} | <:p5_nuke:1029974543089008722>: ${res[search].affinities.nuke} | <:p5_bless:1029974583459201074>: ${res[search].affinities.bless} | <:p5_curse:1029974610537619556>: ${res[search].affinities.curse} | <:p5_almighty:1029974659313180702>: ${res[search].affinities.almighty}`
 
                 var embed = new EmbedBuilder()
                     .setColor("Red")
