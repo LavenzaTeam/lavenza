@@ -16,21 +16,29 @@ module.exports = (client) => {
             }
         }
 
-        const clientID = process.env.client_id;
+        if (process.env.branch === "live") {
+            var clientID = process.env.live_branch_client_id;
+        } else if (process.env.branch === "test") {
+            var clientID = process.env.test_branch_client_id;
+        }
         const guildID = process.env.support_server_id;
+        const branch = process.env.branch;
         const rest = new REST({ version: '9' }).setToken(process.env.token);
         try {
             console.log("Started refreshing application (/) commands");
+            console.log(`Branch set: ${branch} selected.`);
 
-            //global commands
-            //await rest.put(Routes.applicationCommands(clientID), {
-            //    body: commandArray,
-            //});
+            if (branch === "live") {
+                await rest.put(Routes.applicationCommands(clientID), {
+                    body: commandArray,
+                 });
+            }
 
-            //guild only commands
-            await rest.put(Routes.applicationGuildCommands(clientID, guildID), {
-                body: client.commandArray,
-            });
+            if (branch === "test") {
+                await rest.put(Routes.applicationGuildCommands(clientID, guildID), {
+                    body: client.commandArray,
+                });
+            }
 
             console.log("Successfully refreshed application (/) commands.");
         } catch (error) {

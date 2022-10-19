@@ -1,7 +1,12 @@
 require("dotenv").config();
-const { token } = process.env;
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
+
+if (process.env.branch === "live") {
+    var token = process.env.live_branch_token;
+} else if (process.env.branch === "test") {
+    var token = process.env.test_branch_token;
+}
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
