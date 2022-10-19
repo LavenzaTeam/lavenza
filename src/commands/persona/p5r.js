@@ -8,7 +8,7 @@ module.exports = {
         .setDescription("Testing P5R command")
         .addStringOption(option => 
             option.setName("type")
-                .setDescription("The type of data you are looking up.")
+                .setDescription("The type of data you are looking up. (Note: Currently, only the 'Persona' selection works at the moment.")
                 .setRequired(true)
                 .addChoices(
                     { name: "Persona", value: "persona" },
@@ -19,7 +19,7 @@ module.exports = {
                 ))
         .addStringOption(option => 
             option.setName("data")
-                .setDescription("The name of the Persona/Shadow/Fusion/Item you are searching for.")
+                .setDescription("The name of the Persona/Shadow/Fusion/Item you are searching for. (Note: The name must be spelled perfectly, caps is not required, but any punctuation such as a - or a ' is required.")
                 .setRequired(true)),
     async execute(interaction, client) {
         const errorButton = new ButtonBuilder()
