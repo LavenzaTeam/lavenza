@@ -31,12 +31,14 @@ module.exports = (client) => {
             console.log(`Branch set: ${branch} selected.`);
 
             if (branch === "live") {
+                console.log("Refreshing Global application (/) commands");
                 await rest.put(Routes.applicationCommands(clientID), {
                     body: commandArray,
                  });
             }
 
             if (branch === "test") {
+                console.log("Refreshing Guild application (/) commands");
                 await rest.put(Routes.applicationGuildCommands(clientID, guildID), {
                     body: client.commandArray,
                 });
