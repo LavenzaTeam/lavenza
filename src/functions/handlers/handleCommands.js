@@ -33,7 +33,7 @@ module.exports = (client) => {
             if (branch === "live") {
                 console.log("Refreshing Global application (/) commands");
                 await rest.put(Routes.applicationCommands(clientID), {
-                    body: commandArray,
+                    body: client.commandArray,
                  });
             }
 
