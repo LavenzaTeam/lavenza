@@ -18,12 +18,14 @@ module.exports = (client) => {
 
         if (process.env.branch === "live") {
             var clientID = process.env.live_branch_client_id;
+            var token = process.env.live_branch_token;
         } else if (process.env.branch === "test") {
             var clientID = process.env.test_branch_client_id;
+            var token = process.env.test_branch_token;
         }
         const guildID = process.env.support_server_id;
         const branch = process.env.branch;
-        const rest = new REST({ version: '9' }).setToken(process.env.token);
+        const rest = new REST({ version: '9' }).setToken(token);
         try {
             console.log("Started refreshing application (/) commands");
             console.log(`Branch set: ${branch} selected.`);
