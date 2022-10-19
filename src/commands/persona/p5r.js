@@ -14,7 +14,8 @@ module.exports = {
                     { name: "Persona", value: "persona" },
                     { name: "Shadow", value: "shadow" },
                     { name: "Fusion", value: "fusion" },
-                    { name: "Item", value: "item" }
+                    { name: "Item", value: "item" },
+                    { name: "Skill", value: "skill"}
                 ))
         .addStringOption(option => 
             option.setName("data")
@@ -110,6 +111,14 @@ module.exports = {
                 break;
         
             default:
+                var embed = new EmbedBuilder()
+                .setColor("Red")
+                .setThumbnail("https://lavenza.tk/assets/P5R_Logo.png")
+                .setTitle("We're terribly sorry.")
+                .setDescription("At the moment, the value specified for 'type' is either invalid, or isn't complete at the moment. Please check back again at a future date.")
+                .setTimestamp()
+                .setFooter({ text: "Data from the Lavenza API was provided by the SMT Fandom Wiki", iconURL: client.user.displayAvatarURL() });
+                
                 break;
         }
 
