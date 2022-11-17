@@ -57,6 +57,17 @@ module.exports = {
                 //affinities
                 let affinitiesMessage = `${emote.p5r.phys}: ${res[search].affinities.phys} | ${emote.p5r.gun}: ${res[search].affinities.gun} | ${emote.p5r.fire}: ${res[search].affinities.fire} | ${emote.p5r.ice}: ${res[search].affinities.ice} | ${emote.p5r.elec}: ${res[search].affinities.elec} | ${emote.p5r.wind}: ${res[search].affinities.wind} | ${emote.p5r.psy}: ${res[search].affinities.psy} | ${emote.p5r.nuke}: ${res[search].affinities.nuke} | ${emote.p5r.bless}: ${res[search].affinities.bless} | ${emote.p5r.curse}: ${res[search].affinities.curse} | ${emote.p5r.almighty}: ${res[search].affinities.almighty}`
 
+                //itemization beta
+                if (!res[search].item.name) {
+                    var itemizationMessage = `Normal: ${emote.p5r.unknown} ${res[search].item} \nFusion Alarm: ${emote.p5r.unknown} ${res[search].itemAlarm}`;
+                } else {
+                    var itemType = res[search].item.type;
+                    var itemTypeAlarm = res[search].itemAlarm.type;
+                    if (!itemType) itemType = "unknown";
+                    if (!itemTypeAlarm) itemTypeAlarm = "unknown";
+                    var itemizationMessage = `Normal: ${emote.p5r[itemType]} ${res[search].item.name} \nFusion Alarm: ${emote.p5r[itemTypeAlarm]} ${res[search].itemAlarm.name}`;
+                }
+
                 var embed = new EmbedBuilder()
                     .setColor("Red")
                     .setTitle(res[search].name)
@@ -69,8 +80,7 @@ module.exports = {
                         //{ name: '\u200b', value: '\u200b' },
                         { name: "Affinities", value: affinitiesMessage },
                         //{ name: '\u200b', value: '\u200b' },
-                        { name: "Item", value: res[search].item, inline: true },
-                        { name: "Alarm Item", value: res[search].itemAlarm, inline: true },
+                        { name: "Item", value: itemizationMessage, inline: true },
                         { name: '\u200b', value: '\u200b' },
                         { name: "Skills", value: skillsMessage }
                     )
