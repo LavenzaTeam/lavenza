@@ -55,7 +55,7 @@ module.exports = {
                 }
 
                 //affinities
-                let affinitiesMessage = `<:p5_physical:1029974208962371654>: ${res[search].affinities.phys} | <:p5_gun:1029974261995163658>: ${res[search].affinities.gun} | <:p5_fire:1029974318072991784>: ${res[search].affinities.fire} | <:p5_ice:1029974354802511922>: ${res[search].affinities.ice} | <:p5_elec:1029974416047747082>: ${res[search].affinities.elec} | <:p5_wind:1029974468002598952>: ${res[search].affinities.wind} | <:p5_psy:1029974500441325568>: ${res[search].affinities.psy} | <:p5_nuke:1029974543089008722>: ${res[search].affinities.nuke} | <:p5_bless:1029974583459201074>: ${res[search].affinities.bless} | <:p5_curse:1029974610537619556>: ${res[search].affinities.curse} | <:p5_almighty:1029974659313180702>: ${res[search].affinities.almighty}`
+                let affinitiesMessage = `${emote.p5r.phys}: ${res[search].affinities.phys} | ${emote.p5r.gun}: ${res[search].affinities.gun} | ${emote.p5r.fire}: ${res[search].affinities.fire} | ${emote.p5r.ice}: ${res[search].affinities.ice} | ${emote.p5r.elec}: ${res[search].affinities.elec} | ${emote.p5r.wind}: ${res[search].affinities.wind} | ${emote.p5r.psy}: ${res[search].affinities.psy} | ${emote.p5r.nuke}: ${res[search].affinities.nuke} | ${emote.p5r.bless}: ${res[search].affinities.bless} | ${emote.p5r.curse}: ${res[search].affinities.curse} | ${emote.p5r.almighty}: ${res[search].affinities.almighty}`
 
                 var embed = new EmbedBuilder()
                     .setColor("Red")
