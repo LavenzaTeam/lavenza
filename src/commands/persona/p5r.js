@@ -75,13 +75,13 @@ module.exports = {
 
                 //itemization beta
                 if (!res[search].item.name) {
-                    var itemizationMessage = `Normal: ${emote.p5r.unknown} ${res[search].item} \nFusion Alarm: ${emote.p5r.unknown} ${res[search].itemAlarm}`;
+                    var itemizationMessage = `Normal: ${emote.p5r.unknown} **${res[search].item}** \nFusion Alarm: ${emote.p5r.unknown} **${res[search].itemAlarm}**`;
                 } else {
                     var itemType = res[search].item.type;
                     var itemTypeAlarm = res[search].itemAlarm.type;
                     if (!itemType) itemType = "unknown";
                     if (!itemTypeAlarm) itemTypeAlarm = "unknown";
-                    var itemizationMessage = `Normal: ${emote.p5r[itemType]} ${res[search].item.name} \nFusion Alarm: ${emote.p5r[itemTypeAlarm]} ${res[search].itemAlarm.name}`;
+                    var itemizationMessage = `Normal: ${emote.p5r[itemType]} **${res[search].item.name}** \nFusion Alarm: ${emote.p5r[itemTypeAlarm]} **${res[search].itemAlarm.name}**`;
                 }
 
                 var embed = new EmbedBuilder()
@@ -91,21 +91,18 @@ module.exports = {
                     .setDescription(`**Persona Trait** - ${res[search].trait}`)
                     .addFields(
                         { name: "Arcana", value: res[search].arcana, inline: true },
-                        { name: "Level", value: res[search].level, inline: true },
                         { name: "Stats", value: `Strength: ${res[search].baseStats.strength} | Magic: ${res[search].baseStats.magic} | Endurance: ${res[search].baseStats.endurance} | Agility: ${res[search].baseStats.agility} | Luck: ${res[search].baseStats.luck}`, inline: true },
                         //{ name: '\u200b', value: '\u200b' },
                         { name: "Affinities", value: affinitiesMessage },
                         //{ name: '\u200b', value: '\u200b' },
                         { name: "Item", value: itemizationMessage, inline: true },
                         { name: '\u200b', value: '\u200b' },
-                        { name: "Skills", value: skillsMessage },
-                        { name: '\u200b', value: '\u200b', inline: true }
+                        { name: `Skills \`Lv ${res[search].level}\``, value: skillsMessage, inline: true },
                     )
                     .setTimestamp()
                     .setFooter({ text: "Data from the Lavenza API was provided by the SMT Fandom Wiki", iconURL: client.user.displayAvatarURL() });
 
-                    if (skillsMessageII) embed.addFields({ name: '\u200b', value: skillsMessageII });
-                    embed.addFields({ name: '\u200b', value: '\u200b' });
+                    if (skillsMessageII) embed.addFields({ name: '\u200b', value: skillsMessageII, inline: true });
 
                 break;
         
