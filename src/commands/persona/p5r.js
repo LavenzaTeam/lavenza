@@ -33,8 +33,8 @@ module.exports = {
 
         switch (type) {
             case "persona":
-                const fetchedData = await fetch(api.p5r.persona);
-                const res = await fetchedData.json();
+                var fetchedData = await fetch(api.p5r.persona);
+                var res = await fetchedData.json();
 
                 if (!res[search]) return interaction.reply({
                     content: "There was an error searching for the specified data, please try again.",
@@ -81,6 +81,32 @@ module.exports = {
 
                 break;
         
+            case "skill":
+                var fetchedData = await fetch(api.p5r.skill);
+                var res = await fetchedData.json();
+                let skillType = res[search].type;
+
+                if (!res[search]) return interaction.reply({
+                    content: "There was an error searching for the specified data, please try again.",
+                    ephemeral: true,
+                    components: [new ActionRowBuilder().addComponents(errorButton)]
+                })
+
+                var embed = new EmbedBuilder()
+                    .setColor("Red")
+                    .setTitle(res[search].name)
+                    .setThumbnail("https://lavenza.tk/assets/p5r_logo.png")
+                    .setDescription(`**Effect** - ${res[search].effect}`)
+                    .addFields(
+                        { name: "Type", value: emote.p5r[skillType], inline: true },
+                        { name: "Cost", value: res[search].cost, inline: true },
+                        { name: "Skill Card", value: res[search].card, inline: true }
+                    )
+                    .setTimestamp()
+                    .setFooter({ text: "Data from the Lavenza API was provided by the SMT Fandom Wiki", iconURL: client.user.displayAvatarURL() });
+
+                break;
+
             default:
                 var embed = new EmbedBuilder()
                 .setColor("Red")

@@ -3,6 +3,7 @@
         "persona": "https://lavenza.tk/api/p5r/personas.json",
         "shadow": null,
         "fusion": null,
-        "item": null
+        "item": null,
+        "skill": "https://lavenza.tk/api/p5r/skills.json"
     }
 }
