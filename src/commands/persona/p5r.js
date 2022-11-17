@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require("discord.js");
 const fetch = require("node-fetch");
 const api = require("../../configuration/api-endpoints.json");
+const emote = require("../../configuration/emote-ids.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -46,39 +47,11 @@ module.exports = {
                 const skillList = res[search].skills
                 var skillsMessage = "";
 
-                if (Object.keys(skillList).length > 24) {
-                    var skillMessageIII = "";
-                    var skillsMessageII = "";
-                    let num = 0;
-                    for (const skills in skillList) {
-                        let skillString = `**${skillList[skills].name} (${skillList[skills].cost})** - ${skillList[skills].effect} - Level: ${skillList[skills].level} \n`;
-                        num++
-                        if (num > 24) {
-                            skillMessageIII = skillMessageIII.concat(skillString);
-                        } else if (num >12) {
-                            skillsMessageII = skillsMessageII.concat(skillString);
-                        } else {
-                            skillsMessage = skillsMessage.concat(skillString);
-                        }
-                    }
-
-                } else if (Object.keys(skillList).length > 12) {
-                    var skillsMessageII = "";
-                    let num = 0;
-                    for (const skills in skillList) {
-                        let skillString = `**${skillList[skills].name} (${skillList[skills].cost})** - ${skillList[skills].effect} - Level: ${skillList[skills].level} \n`;
-                        num++
-                        if (num > 12) {
-                            skillsMessageII = skillsMessageII.concat(skillString);
-                        } else {
-                            skillsMessage = skillsMessage.concat(skillString);
-                        }
-                    }
-                } else {
-                    for (const skills in skillList) {
-                        let skillString = `**${skillList[skills].name} (${skillList[skills].cost})** - ${skillList[skills].effect} - Level: ${skillList[skills].level} \n`;
-                        skillsMessage = skillsMessage.concat(skillString);
-                    }
+                for (const skills in skillList) {
+                    let skillType = skillList[skills].type;
+                    if (!emote.p5r[skillType]) skillType = "unknown";
+                    let skillString = `${emote.p5r[skillType]} **${skillList[skills].name}** \`Lv ${skillList[skills].level}\` \n`;
+                    skillsMessage = skillsMessage.concat(skillString);
                 }
 
                 //affinities
@@ -104,8 +77,6 @@ module.exports = {
                     .setTimestamp()
                     .setFooter({ text: "Data from the Lavenza API was provided by the SMT Fandom Wiki", iconURL: client.user.displayAvatarURL() });
 
-                    if (skillsMessageII) embed.addFields( { name: '\u200b', value: skillsMessageII });
-                    if (skillMessageIII) embed.addFields( { name: '\u200b', value: skillMessageIII });
                     embed.addFields({ name: '\u200b', value: '\u200b' });
 
                 break;
