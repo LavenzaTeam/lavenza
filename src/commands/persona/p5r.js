@@ -47,11 +47,27 @@ module.exports = {
                 const skillList = res[search].skills
                 var skillsMessage = "";
 
-                for (const skills in skillList) {
-                    let skillType = skillList[skills].type;
-                    if (!emote.p5r[skillType]) skillType = "unknown";
-                    let skillString = `${emote.p5r[skillType]} **${skillList[skills].name}** \`Lv ${skillList[skills].level}\` \n`;
-                    skillsMessage = skillsMessage.concat(skillString);
+                if (Object.keys(skillList).length > 13) {
+                    var skillsMessageII = "";
+                    let num = 0;
+                    for (const skills in skillList) {
+                        let skillType = skillList[skills].type;
+                        if (!emote.p5r[skillType]) skillType = "unknown";
+                        let skillString = `${emote.p5r[skillType]} **${skillList[skills].name}** \`Lv ${skillList[skills].level}\` \n`;
+                        num++
+                        if (num > 13) {
+                            skillsMessageII = skillsMessageII.concat(skillString);
+                        } else {
+                            skillsMessage = skillsMessage.concat(skillString);
+                        }
+                    }
+                } else {
+                    for (const skills in skillList) {
+                        let skillType = skillList[skills].type;
+                        if (!emote.p5r[skillType]) skillType = "unknown";
+                        let skillString = `${emote.p5r[skillType]} **${skillList[skills].name}** \`Lv ${skillList[skills].level}\` \n`;
+                        skillsMessage = skillsMessage.concat(skillString);
+                    }
                 }
 
                 //affinities
@@ -82,11 +98,13 @@ module.exports = {
                         //{ name: '\u200b', value: '\u200b' },
                         { name: "Item", value: itemizationMessage, inline: true },
                         { name: '\u200b', value: '\u200b' },
-                        { name: "Skills", value: skillsMessage }
+                        { name: "Skills", value: skillsMessage },
+                        { name: '\u200b', value: '\u200b', inline: true }
                     )
                     .setTimestamp()
                     .setFooter({ text: "Data from the Lavenza API was provided by the SMT Fandom Wiki", iconURL: client.user.displayAvatarURL() });
 
+                    if (skillsMessageII) embed.addFields({ name: '\u200b', value: skillsMessageII });
                     embed.addFields({ name: '\u200b', value: '\u200b' });
 
                 break;
