@@ -60,7 +60,7 @@ module.exports = {
                 var embed = new EmbedBuilder()
                     .setColor("Red")
                     .setTitle(res[search].name)
-                    .setThumbnail("https://lavenza.tk/assets/P5R_Logo.png")
+                    .setThumbnail("https://lavenza.tk/assets/p5r_logo.png")
                     .setDescription(`**Persona Trait** - ${res[search].trait}`)
                     .addFields(
                         { name: "Arcana", value: res[search].arcana, inline: true },
@@ -84,13 +84,14 @@ module.exports = {
             case "skill":
                 var fetchedData = await fetch(api.p5r.skill);
                 var res = await fetchedData.json();
-                let skillType = res[search].type;
 
                 if (!res[search]) return interaction.reply({
                     content: "There was an error searching for the specified data, please try again.",
                     ephemeral: true,
                     components: [new ActionRowBuilder().addComponents(errorButton)]
-                })
+                });
+
+                let skillType = res[search].type;
 
                 var embed = new EmbedBuilder()
                     .setColor("Red")
