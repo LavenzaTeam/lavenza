@@ -86,16 +86,14 @@ module.exports = {
 
                 var embed = new EmbedBuilder()
                     .setColor("Red")
-                    .setTitle(res[search].name)
+                    .setTitle(`${res[search].name} | \`(${res[search].arcana})\``)
                     .setThumbnail("https://lavenza.tk/assets/p5r_logo.png")
                     .setDescription(`**Persona Trait** - ${res[search].trait}`)
                     .addFields(
-                        { name: "Arcana", value: res[search].arcana, inline: true },
-                        { name: "Stats", value: `Strength: ${res[search].baseStats.strength} | Magic: ${res[search].baseStats.magic} | Endurance: ${res[search].baseStats.endurance} | Agility: ${res[search].baseStats.agility} | Luck: ${res[search].baseStats.luck}`, inline: true },
-                        //{ name: '\u200b', value: '\u200b' },
                         { name: "Affinities", value: affinitiesMessage },
-                        //{ name: '\u200b', value: '\u200b' },
-                        { name: "Item", value: itemizationMessage, inline: true },
+                        { name: '\u200b', value: '\u200b' },
+                        { name: "Itemization", value: itemizationMessage, inline: true },
+                        { name: "Base Stats", value: `\`Strength: ${res[search].baseStats.strength}\` \n\`Magic: ${res[search].baseStats.magic}\` \n\`Endurance: ${res[search].baseStats.endurance}\` \n\`Agility: ${res[search].baseStats.agility}\` \n\`Luck: ${res[search].baseStats.luck}\``, inline: true },
                         { name: '\u200b', value: '\u200b' },
                         { name: `Skills \`Lv ${res[search].level}\``, value: skillsMessage, inline: true },
                     )
