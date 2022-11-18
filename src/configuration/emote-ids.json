@@ -16,6 +16,16 @@
         "passive": "<:p5_passive:1043019843860971520>",
         "ailment": "<:p5_ailment:1043019782443769896>",
         "jokerMelee": "<:p5_jokerMelee:1043025543710380082>",
-        "unknown": "❓"
+	"annMelee": undefined,
+	"makotoMelee": undefined,
+	"akechiMelee": undefined,
+	"morganaGun": undefined,
+	"ryujiGun": undefined,
+	"haruGun": undefined,
+	"armorMorgana": undefined,
+	"accessory": undefined,
+	"skillcard": undefined,
+        "unknown": "❓",
+	"none": "❌"
     }
 }
